@@ -5,7 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import me.elordenador.redsocialpobreza.DBManager;
 import com.github.lalyos.jfiglet.FigletFont;
-import javax.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "InitServlet", value="/", loadOnStartup=1)
 public class InitServlet extends HttpServlet {
