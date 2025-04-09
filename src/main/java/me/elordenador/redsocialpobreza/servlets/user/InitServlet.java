@@ -9,7 +9,11 @@ import jakarta.servlet.http.HttpServlet;
 @WebServlet(name = "InitServlet", value="/", loadOnStartup=1)
 public class InitServlet extends HttpServlet {
     public void init() throws ServletException {
-        System.out.println(FigletFont.convertOneLine("RED SOCIAL"));
+        try {
+            System.out.println(FigletFont.convertOneLine("RED SOCIAL"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         DBManager.initialize();
     }
 }
