@@ -21,21 +21,6 @@ public class MyServletContentListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
-        System.out.println("MyServletContentListener contextInitialized");
-        sessionFactory = new Configuration()
-                .addAnnotatedClass(User.class)
-                .setProperty(URL, System.getenv("JDBC_URL"))
-                .setProperty(USER, System.getenv("JDBC_USER"))
-                .setProperty(PASS, System.getenv("JDBC_PASS"))
-                .setProperty("hibernate.agroal.maxSize", 20)
-                .setProperty(SHOW_SQL ,true)
-                .setProperty(FORMAT_SQL, true)
-                .setProperty(HIGHLIGHT_SQL, true)
-                .buildSessionFactory();
 
-        sessionFactory.getSchemaManager().exportMappedObjects(true);
-        sessionFactory.inTransaction(session -> {
-            session.persist(new User("admin", "admin"));
-        });
     }
 }
