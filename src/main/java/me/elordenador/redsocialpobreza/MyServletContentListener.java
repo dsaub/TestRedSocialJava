@@ -33,6 +33,8 @@ public class MyServletContentListener implements ServletContextListener {
                 .buildSessionFactory();
 
         sessionFactory.getSchemaManager().exportMappedObjects(true);
-
+        sessionFactory.inTransaction(session -> {
+            session.persist(new User("admin", "admin"));
+        })
     }
 }
