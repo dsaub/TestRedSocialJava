@@ -7,7 +7,7 @@ import com.github.lalyos.jfiglet.FigletFont;
 
 @WebServlet(name = "InitServlet", value="/", loadOnStartup=1)
 public class InitServlet {
-    public void init() throws ServletException {
+    public void init() throws ServletException, IOException {
         System.out.println(FigletFont.convertOneLine("RED SOCIAL"));
         DBManager.initialize();
     }
