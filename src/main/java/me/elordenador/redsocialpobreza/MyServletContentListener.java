@@ -21,6 +21,7 @@ public class MyServletContentListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
+        System.out.println("MyServletContentListener contextInitialized");
         sessionFactory = new Configuration()
                 .addAnnotatedClass(User.class)
                 .setProperty(URL, System.getenv("JDBC_URL"))
