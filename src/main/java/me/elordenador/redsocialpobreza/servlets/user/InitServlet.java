@@ -1,5 +1,6 @@
 package me.elordenador.redsocialpobreza.servlets.user;
 
+import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import me.elordenador.redsocialpobreza.DBManager;
