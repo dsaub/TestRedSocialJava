@@ -1,5 +1,7 @@
 package me.elordenador.redsocialpobreza;
 
+import me.elordenador.redsocialpobreza.models.Permission;
+import me.elordenador.redsocialpobreza.models.Token;
 import me.elordenador.redsocialpobreza.models.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,6 +20,8 @@ public class DBManager {
     public static void initialize() {
         sessionFactory = new Configuration()
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Permission.class)
+                .addAnnotatedClass(Token.class)
                 .setProperty(URL, System.getenv("JDBC_URL"))
                 .setProperty(USER, System.getenv("JDBC_USER"))
                 .setProperty(PASS, System.getenv("JDBC_PASS"))
