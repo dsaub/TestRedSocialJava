@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User {
     @Id
+    @NotNull
     int user_id;
 
     @NotNull
