@@ -10,11 +10,6 @@ RUN tar xvzf apache-tomcat-11.0.6.tar.gz --strip-components 1 --directory /opt/t
 
 WORKDIR /opt/tomcat
 
-COPY wait-for-mysql.sh /wait-for-mysql.sh
-
-
-RUN chmod +x /wait-for-mysql.sh
-
 RUN mkdir /build
 WORKDIR /build
 ADD . .
