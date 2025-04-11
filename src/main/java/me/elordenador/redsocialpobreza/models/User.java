@@ -5,9 +5,11 @@ import com.google.common.hash.Hashing;
 import com.sun.istack.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +20,9 @@ public class User {
 
     @NotNull
     String username, password, fullname, email, phone;
+
+    @ManyToMany
+    Set<User> friends;
 
     public User() {
 
