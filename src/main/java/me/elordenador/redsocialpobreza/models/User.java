@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import me.elordenador.redsocialpobreza.DBManager;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
@@ -50,5 +53,29 @@ public class User {
         password = hashedNewPassword;
         return true;
     }
+    /*
+    public boolean havePermission(String permission1) {
+        SessionFactory sessionFactory = DBManager.getSessionFactory();
+        boolean permissionFound = false;
+        sessionFactory.inTransaction(session -> {
+            System.out.println("Checking if user haves '*' permission");
+            Query<Permission> query = session.createQuery("from Permission p where User = :user AND permission = '*'", Permission.class);
+            query.setParameter("user", this);
+
+            Permission permission = query.uniqueResult();
+            if (permission != null) {
+                permissionFound = true;
+                return;
+            }
+            System.out.println("Checking if user haves '"+permission+"' permission");
+            query = session.createQuery("from Permission p where User = :user AND permission = :permission", Permission.class);
+            query.setParameter("user", this);
+            query.setParameter("permission", permission1);
+            permission = query.uniqueResult();
+            return permission != null;
+        });
+        return true;
+    }
+    */
 
 }
