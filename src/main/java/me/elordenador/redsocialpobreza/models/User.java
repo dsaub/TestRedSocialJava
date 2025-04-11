@@ -23,7 +23,8 @@ public class User {
 
     @ManyToMany
     Set<User> friends;
-
+    @NotNull
+    boolean initialized = false;
     public User() {
 
     }
@@ -31,6 +32,14 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
+    }
+
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
     }
 
     public boolean setPassword(String originalPassword, String newPassword) {
