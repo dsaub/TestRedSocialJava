@@ -46,7 +46,7 @@ public class DBManager {
             } else {
                 System.out.println("Usuario no encontrado... Creando");
                 User user1 = new User("admin", "admin");
-                user.setInitialized(false);
+                user1.setInitialized(false);
                 session.persist(user1);
                 session.persist(new Permission(user1 ,"*"));
                 System.out.println("USERNAME: admin");
