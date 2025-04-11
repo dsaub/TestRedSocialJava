@@ -45,10 +45,14 @@ public class DBManager {
                 System.out.println("Usuario encontrado...");
             } else {
                 System.out.println("Usuario no encontrado... Creando");
-                session.persist(new User("admin", "admin"));
+                User user1 = new User("admin", "admin");
+                user.setInitialized(false);
+                session.persist(user1);
+                session.persist(new Permission(user1 ,"*"));
                 System.out.println("USERNAME: admin");
                 System.out.println("PASSWORD: admin");
-                System.out.println("Please enter.");
+                System.out.println("Please enter to change your password.");
+
             }
         });
     }
