@@ -5,6 +5,7 @@ import me.elordenador.redsocialpobreza.models.Token;
 import me.elordenador.redsocialpobreza.models.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import static org.hibernate.cfg.JdbcSettings.*;
 import static org.hibernate.cfg.JdbcSettings.HIGHLIGHT_SQL;
@@ -32,8 +33,23 @@ public class DBManager {
                 .buildSessionFactory();
 
         sessionFactory.getSchemaManager().exportMappedObjects(true);
+
+
         sessionFactory.inTransaction(session -> {
-            session.persist(new User("admin", "admin"));
+            System.out.println("Buscando si el usuario 'admin' existe");
+            Query<User> query = session.createQuery("from users where username = :username", User.class);
+            query.setParameter("username", "admin");
+
+            User user = query.uniqueResult();
+            if (user != null) {
+                System.out.println("Usuario encontrado...");
+            } else {
+                System.out.println("Usuario no encontrado... Creando");
+                session.persist(new User("admin", "admin"));
+                System.out.println("USERNAME: admin");
+                System.out.println("PASSWORD: admin");
+                System.out.println("Please enter.");
+            }
         });
     }
 }
