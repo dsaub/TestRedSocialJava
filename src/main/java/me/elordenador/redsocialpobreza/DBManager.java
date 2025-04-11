@@ -37,7 +37,7 @@ public class DBManager {
 
         sessionFactory.inTransaction(session -> {
             System.out.println("Buscando si el usuario 'admin' existe");
-            Query<User> query = session.createQuery("from users where username = :username", User.class);
+            Query<User> query = session.createQuery("from User where username = :username", User.class);
             query.setParameter("username", "admin");
 
             User user = query.uniqueResult();
