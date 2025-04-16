@@ -53,6 +53,14 @@ public class User {
         password = hashedNewPassword;
         return true;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFullName() {
+        return fullname;
+    }
     /*
     public boolean havePermission(String permission1) {
         SessionFactory sessionFactory = DBManager.getSessionFactory();
