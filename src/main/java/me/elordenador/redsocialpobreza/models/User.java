@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import me.elordenador.redsocialpobreza.DBManager;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
@@ -63,14 +64,14 @@ public class User {
     }
 
     // TODO: Fix issue with this code
-    /*
-    public boolean havePermission(String permission1) {
-        SessionFactory sessionFactory = DBManager.getSessionFactory();
-        boolean permissionFound = false;
-        sessionFactory.inTransaction(session -> {
+    private class PermissionManager {
+        public static String permission;
+        public static boolean permissionFound = false;
+        public static User user;
+        public static void transaction(Session session) {
             System.out.println("Checking if user haves '*' permission");
             Query<Permission> query = session.createQuery("from Permission p where User = :user AND permission = '*'", Permission.class);
-            query.setParameter("user", this);
+            query.setParameter("user", user);
 
             Permission permission = query.uniqueResult();
             if (permission != null) {
@@ -79,13 +80,23 @@ public class User {
             }
             System.out.println("Checking if user haves '"+permission+"' permission");
             query = session.createQuery("from Permission p where User = :user AND permission = :permission", Permission.class);
-            query.setParameter("user", this);
-            query.setParameter("permission", permission1);
+            query.setParameter("user", user);
+            query.setParameter("permission", permission);
             permission = query.uniqueResult();
-            return permission != null;
-        });
-        return true;
+            permissionFound = permission != null;
+        }
     }
-    */
+    public boolean havePermission(String permission1) {
+        SessionFactory sessionFactory = DBManager.getSessionFactory();
+
+        PermissionManager.permission = permission1;
+        PermissionManager.user = this;
+        sessionFactory.inTransaction(session -> {
+            PermissionManager.transaction(session);
+        });
+
+
+        return PermissionManager.permissionFound;
+    }
 
 }
