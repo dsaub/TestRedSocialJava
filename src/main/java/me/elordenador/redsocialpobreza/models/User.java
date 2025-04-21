@@ -61,6 +61,8 @@ public class User {
     public String getFullName() {
         return fullname;
     }
+
+    // TODO: Fix issue with this code
     /*
     public boolean havePermission(String permission1) {
         SessionFactory sessionFactory = DBManager.getSessionFactory();
