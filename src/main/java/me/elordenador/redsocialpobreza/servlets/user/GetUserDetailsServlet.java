@@ -33,6 +33,7 @@ public class GetUserDetailsServlet extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             try {
+                response.setHeader("Access-Control-Allow-Origin", "*");
                 PrintWriter out = response.getWriter();
                 out.println(gson.toJson(ouser));
             } catch (IOException e) {
