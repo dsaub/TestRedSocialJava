@@ -1,7 +1,7 @@
 FROM alpine:3.21.3
 
 
-RUN apk add openjdk21 bash maven git
+RUN apk add openjdk21 bash maven git curl
 
 RUN mkdir /opt/tomcat
 WORKDIR /opt/tomcat
