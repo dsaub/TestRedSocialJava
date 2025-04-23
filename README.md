@@ -41,11 +41,12 @@ docker pull ghcr.io/dsaub/redsocial-backend:latest
 > Otherwise, it'll crash
 
 ### Environment Variables
-| Variable | Description                                                   | Example |
-|----------|---------------------------------------------------------------|---------|
-| JDBC_URL | JDBC Url for the database. Should already point to a database | jdbc:mysql://(host):(port)/(database) |
-| JDBC_USER | MySQL Username, Should have permissions for the database     | root |
-| JDBC_PASS | MySQL Password | toor |
+| Variable    | Description                                                   | Example                               |
+|-------------|---------------------------------------------------------------|---------------------------------------|
+| JDBC_URL    | JDBC Url for the database. Should already point to a database | jdbc:mysql://(host):(port)/(database) |
+| JDBC_USER   | MySQL Username, Should have permissions for the database      | root                                  |
+| JDBC_PASS   | MySQL Password                                                | toor                                  |
+| BACKEND_URL | Public URL for Backend, used for CORS policy with Frontend    | http://127.0.0.1:8081                 |
 
 ## Warnings
 > [!WARNING]

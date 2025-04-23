@@ -30,10 +30,13 @@ public class GetUserDetailsServlet extends HttpServlet {
             oUser ouser = new oUser();
             ouser.username = user.getUsername();
             ouser.fullname = user.getFullName();
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
+            response.setContentType(request.getContentType());
+            response.setCharacterEncoding(request.getCharacterEncoding());
             try {
-                response.addHeader("Access-Control-Allow-Origin", "*");
+                response.addHeader("Access-Control-Allow-Origin", System.getenv("BACKEND_URL"));
+                response.addHeader("Access-Control-Allow-Methods", "POST");
+                response.addHeader("Access-Control-Allow-Credentials", "true");
+                response.addHeader("Access-Control-Allow-Headers", "Content-Type");
                 PrintWriter out = response.getWriter();
                 out.println(gson.toJson(ouser));
             } catch (IOException e) {
