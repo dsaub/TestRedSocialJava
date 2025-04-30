@@ -20,12 +20,19 @@ public class GetUserDetailsServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         SessionFactory sessionFactory = DBManager.getSessionFactory();
-
+        System.out.println("Searching user " + username);
 
         sessionFactory.inTransaction(session -> {
             Query<User> query = session.createQuery("from User where username = :username", User.class);
             query.setParameter("username", username);
             User user = query.uniqueResult();
+
+
+            if (user == null) {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                return;
+            }
+            
             Gson gson = new Gson();
             oUser ouser = new oUser();
             ouser.username = user.getUsername();
