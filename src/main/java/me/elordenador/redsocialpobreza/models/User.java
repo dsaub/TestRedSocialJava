@@ -38,6 +38,14 @@ public class User {
         this.password = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
     }
 
+    public void addFriend(User user) {
+        friends.add(user);
+    }
+
+    public User[] getFriends() {
+        return friends.toArray(new User[friends.size()]);
+    }
+
     public void setInitialized(boolean initialized) {
         this.initialized = initialized;
     }
