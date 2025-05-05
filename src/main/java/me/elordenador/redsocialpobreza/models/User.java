@@ -23,7 +23,7 @@ public class User {
     int user_id;
 
     @NotNull
-    String username, password, fullname, email, phone;
+    String username, password, fullname, email, phone, description;
 
     @ManyToMany
     Set<User> friends;
@@ -55,12 +55,27 @@ public class User {
         return true;
     }
 
+    public boolean setLiteralPassword(String originalPassword, String newPassword) {
+        if (originalPassword.equals(newPassword)) return false;
+        if (!originalPassword.equals(password)) return false;
+        password = newPassword;
+        return true;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public String getFullName() {
         return fullname;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     // TODO: Fix issue with this code
@@ -98,5 +113,4 @@ public class User {
 
         return PermissionManager.permissionFound;
     }
-
 }
