@@ -3,10 +3,7 @@ package me.elordenador.redsocialpobreza.models;
 
 import com.google.common.hash.Hashing;
 import com.sun.istack.NotNull;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import me.elordenador.redsocialpobreza.DBManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,6 +24,10 @@ public class User {
 
     @ManyToMany
     Set<User> friends;
+
+    @OneToMany
+    Set<FriendRequest> friendRequests;
+
     @NotNull
     boolean initialized = false;
     public User() {
@@ -38,7 +39,7 @@ public class User {
         this.password = Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString();
     }
 
-    public void addFriend(User user) {
+    private void addFriend(User user) {
         friends.add(user);
     }
 
