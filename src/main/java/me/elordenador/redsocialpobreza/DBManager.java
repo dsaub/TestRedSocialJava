@@ -1,5 +1,6 @@
 package me.elordenador.redsocialpobreza;
 
+import me.elordenador.redsocialpobreza.models.FriendRequest;
 import me.elordenador.redsocialpobreza.models.Permission;
 import me.elordenador.redsocialpobreza.models.Token;
 import me.elordenador.redsocialpobreza.models.User;
@@ -23,6 +24,7 @@ public class DBManager {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Permission.class)
                 .addAnnotatedClass(Token.class)
+                .addAnnotatedClass(FriendRequest.class)
                 .setProperty(URL, System.getenv("JDBC_URL"))
                 .setProperty(USER, System.getenv("JDBC_USER"))
                 .setProperty(PASS, System.getenv("JDBC_PASS"))
