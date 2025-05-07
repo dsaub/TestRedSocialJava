@@ -14,7 +14,7 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "GetUserServlet", value = "/api/v1/getFriends")
+@WebServlet(name = "GetFriendServlet", value = "/api/v1/getFriends")
 public class GetFriendsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
